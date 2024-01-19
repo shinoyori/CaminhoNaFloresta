@@ -9,9 +9,10 @@ define y = Character("Você", what_prefix='"', what_suffix='"')
 define a = Character("Aldeões", what_prefix='"', what_suffix='"')
 image splash = "logo.png"
 
+
 image witch smile:
     "bruxa smile"
-    pause 7
+    pause 5
     "bruxa smile2"
     pause .05
     "bruxa smile1"
@@ -22,18 +23,20 @@ image witch smile:
 
 image witch confused:
     "bruxa confused"
-    pause 7
+    pause 2
     "bruxa confused1"
     pause .05
     "bruxa confused2"
     pause .07
     "bruxa confused1"
     pause .05
+    "bruxa confused"
+    pause 3
     repeat
 
 image witch serious:
     "bruxa serious"
-    pause 7
+    pause 5
     "bruxa serious1"
     pause .05
     "bruxa serious2"
@@ -44,7 +47,7 @@ image witch serious:
 
 image witch happy:
     "bruxa happy"
-    pause 7
+    pause 5
     "bruxa happy1"
     pause .05
     "bruxa happy2"
@@ -112,7 +115,7 @@ label start:
 
     n "Você anda pelos bosques, percorrendo a estrada até ela começar a desaparecer em meio às raízes e folhagem. Antes que você pudesse perceber, o caminho pelo qual você viera já estava fora de vista."
 
-    n "Ainda assim, você não se sente muito preocupado. Os raios ainda são visíveis pelas copas das árvores, e os pássaros continuam a cantar. Certamente, não deve haver perigo."
+    n "Ainda assim, você não se sente muito preocupado. Os raios de luz ainda são visíveis pelas copas das árvores, e os pássaros continuam a cantar. Certamente, não deve haver perigo."
 
     n "Você tenta se guiar, indo à direção em que, teoricamente, teria ocorrido o acidente. Mas não importa para qual lado você fosse, não havia sinal algum de rastros de pessoas ou carruagens."
 
@@ -207,6 +210,125 @@ label open:
     return
 
 
+label knock:
+
+    play audio "sfx-knock.ogg"
+
+    n "Decidindo bater na porta, você ouve ruídos estranhos vindos de dentro da casa."
+
+    play audio "sfx-dooropen.ogg"
+
+    scene bg room with dissolve
+
+    n "Após um breve momento, a porta se abre lentamente, revelando uma jovem com vestimentas pesadas, de cor escura e adornada por símbolos."
+
+    n "Ela te encara, confusa."
+
+    show witch confused with dissolve
+
+    s "Como um simples aldeão conseguiu achar o caminho para cá?"
+
+    n "Ela pondera, te ignorando completamente."
+
+    show witch serious with dissolve
+
+    s "Talvez eu tenha esquecido de renovar meu feitiço de defesa semana passada."
+
+    show bruxa confused2 with dissolve
+
+    s "Ou..."
+
+    show witch happy
+    hide bruxa confused2 with dissolve
+
+    
+
+    n  "Apesar da desconfiança inicial, seu rosto se ilumina de repente com uma expressão animada."
+
+    s "Entendi! Você veio pedir para ser meu aprendiz, não é? Te expulsaram da Aldeia?"
+
+    show witch smile with dissolve
+
+    s "Não se preocupe, pra sua sorte no momento eu estou com as mãos cheias e aceitando assistência para feitiços menores."
+
+    n "Parece que a bruxa entendeu suas intenções erroneamente... Mas a oferta dela parece ser considerável."
+
+    menu:
+        "Esclarecer que na verdade está perdido, e pedir ajuda para voltar pra casa.":
+            jump lost
+        "Aceitar ser um assistente para uma bruxa desconhecida e deixar sua vida na Aldeia para trás.":
+            jump assistant
+        
+
+
+label lost:
+
+    show witch confused with dissolve
+
+    s "Voltar para a aldeia? ...Sério mesmo?"
+
+    s "Você vai mesmo negar a oportunidade de aprender magia... Pra passar o resto da vida limpando estrume de vaca?"
+
+    s "Acordar antes do sol nascer, trabalhar de manhã até a noite para o Lorde ter mais uma moeda de ouro no seu estoque?"
+
+    n "A Bruxa continua te encarando, desacreditada."
+
+    show bruxa confused2 with dissolve
+
+    n "Após um momento de silêncio, ela ergue sua mão"
+
+    show witch serious 
+    hide bruxa confused2 with dissolve
+
+    s "Tudo bem então, você voltará para sua aldeia. Uma pessoa como você não faria um bom aprendiz de qualquer jeito."
+
+    n "A bruxa realiza um gesto mágico com a mão, sua visão começa a ser ofuscada por luzes brilhantes e de repente você perde sua consciência."
+
+
+    play audio "sfx-magic.ogg"
+    stop nature fadeout 1.0
+    scene white with Dissolve(3.0)
+    pause 1.0
+    scene bg shop with starTrans
+    play nature village fadein 1.0
+
+    n "Quando você desperta de novo, após o que parecia ser um piscar de olhos, você se encontra de volta na Aldeia."
+
+    n "No entanto, seu retorno mágico não passa despercebido pelos aldeões."
+
+    show silhouette with dissolve
+
+    a "De onde aquele cara veio...?"
+
+    a "Você também viu? Ele apareceu do nada..."
+
+    hide silhouette with dissolve
+
+    n "Todos ficam surpresos com sua súbita aparição, alimentando suspeitas sobre sua conexão com forças sombrias."
+
+    n "Convencidos de que você fez um pacto com o diabo ou algo similar, os aldeões se reúnem para organizar o seu julgamento."
+
+    n "Não disposto a virar espetinho de churrasco, você abandona sua casa no meio da noite, buscando uma nova aldeia para recomeçar sua vida."
+
+    scene black with fade 
+
+    stop music fadeout 1.0
+    stop nature fadeout 1.0
+    
+    pause 1.0
+
+    scene bg end2 with dissolve
+
+    $ cinematic = True
+    
+    n "Final 2: Ovelha Negra"
+
+    return
+
+
+label assistant:
+    
+
 
 
 
@@ -222,18 +344,6 @@ label open:
 
 
 label left:
-
-
-    
-    
-    
-    
-    
-    
-
-    s "However, do NOT resell any portion of this GUI as your own."
-
-    s "Anyway, if you {i}are{/i} going to use it in  a commercial project, please consider tipping my kofi."
 
     show sprite1 at center with moveinleft
 
