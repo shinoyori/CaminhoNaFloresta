@@ -1,0 +1,28 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 55, in script
+    image white = "#fffff"
+Exception: Color string 'fffff' must be 3, 4, 6, or 8 hex digits long.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 55, in script
+    image white = "#fffff"
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\ast.py", line 1241, in execute
+    renpy.exports.image(self.imgname, img)
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\exports.py", line 335, in image
+    d = renpy.easy.displayable(d)
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\easy.py", line 126, in displayable
+    return renpy.store.Solid(d)
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\display\imagelike.py", line 51, in __init__
+    self.color = renpy.easy.color(color)
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\color.py", line 167, in __new__
+    raise Exception("Color string {!r} must be 3, 4, 6, or 8 hex digits long.".format(c))
+Exception: Color string 'fffff' must be 3, 4, 6, or 8 hex digits long.
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.1.3.23091805
+O Caminho na Floresta 1.0
+Thu Jan 18 23:43:00 2024
