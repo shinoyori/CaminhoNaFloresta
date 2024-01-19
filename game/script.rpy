@@ -31,7 +31,7 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
     play nature forest
-    scene bg room
+    scene bg shop
     with fade
 
     # These display lines of dialogue.
