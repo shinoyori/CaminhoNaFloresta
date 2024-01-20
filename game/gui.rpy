@@ -19,6 +19,7 @@ define black = "#000"
 define white = "#fff"
 define gold = "#b49920"
 define yellow = "#ffe77e"
+define red = "#FF0000"
 
 ## Images
 image border = "gui/border.png"
