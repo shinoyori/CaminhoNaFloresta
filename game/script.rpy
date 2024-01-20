@@ -106,17 +106,17 @@ label start:
 
     show silhouette with dissolve
 
-    a "Parece que alguns servos conseguiram escapar do acidente, mas eles deixaram o senhor para trás..."
+    a "Parece que alguns servos conseguiram escapar do acidente, mas eles deixaram os dois lordes para trás..."
 
-    a "Meu deus... Será que ele está vivo ainda?"
+    a "Meu deus... Será que eles estão vivos ainda?"
 
-    a "Bom, naquela floresta, duvido que vá sobreviver por muito tempo..."
+    a "Bom, naquela floresta, duvido que vão sobreviver por muito tempo..."
 
     hide silhouette with dissolve
 
-    "Ao escutar as fofocas que corriam pela rua, o que você entendeu foi que, aparentemente, houvera um acidente na floresta envolvendo uma das nobres casas do reino."
+    "Ao escutar as fofocas que corriam pela rua, o que você entendeu foi que, aparentemente, houvera um acidente na floresta envolvendo a nobre casa Magnus do reino."
 
-    "E como o senhor ainda não fora encontrado, então ele provavelmente estava lá perdido, senão morto."
+    "E como os senhores ainda não foram encontrados, então eles provavelmente estavam lá perdidos, senão mortos."
 
     "Movido pela expectativa de encontrar ouro e tecidos luxuosos possivelmente deixados na carruagem quebrada, você partiu rapidamente em direção à floresta."
 
