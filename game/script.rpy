@@ -8,8 +8,27 @@ define n = Character("")
 define f = Character("Sapo", what_prefix='"', what_suffix='"')
 define y = Character("Você", what_prefix='"', what_suffix='"')
 define a = Character("Aldeões", what_prefix='"', what_suffix='"')
+define who = Character("???", what_prefix='"', what_suffix='"')
+define c = Character("Cedric", what_prefix='"', what_suffix='"')
+define p = Character("Prefeito", what_prefix='"', what_suffix='"')
+define k = Character("Guarda", what_prefix='"', what_suffix='"')
 image splash = "logo.png"
 
+transform easeinzoom:
+    center
+    ease 1.5 zoom 1.5 yoffset 300
+
+transform easein_right:
+    center
+    easein 1.0 xalign 0.7
+
+transform easein_transform:
+    offscreenleft
+    easein 1.0 xalign 0.15
+
+transform easein_transform2:
+    offscreenleft
+    easein 1.0 xalign 0.7
 
 transform shake:
     ease .06 yoffset 24
@@ -72,8 +91,92 @@ image witch happy:
     pause .05
     repeat
 
+image cedricc default:
+    "cedric default"
+    pause 2
+    "cedric default1"
+    pause .05
+    "cedric default2"
+    pause .07
+    "cedric default1"
+    pause .05
+    "cedric default"
+    pause 3
+    repeat
+
+image cedricc closedeyes:
+    "cedric default2"
+   
+image cedricc angry:
+    "cedric angry"
+    pause 2
+    "cedric angry1"
+    pause .05
+    "cedric angry2"
+    pause .07
+    "cedric angry1"
+    pause .05
+    "cedric angry"
+    pause 3
+    repeat
+
+image cedricc thinking:
+    "cedric thinking"
+    pause 2
+    "cedric thinking1"
+    pause .05
+    "cedric thinking2"
+    pause .07
+    "cedric thinking1"
+    pause .05
+    "cedric thinking"
+    pause 3
+    repeat
+
+
+image prefeitoo thinking:
+    "prefeito thinking"
+    pause 2
+    "prefeito thinking1"
+    pause .05
+    "prefeito thinking2"
+    pause .07
+    "prefeito thinking1"
+    pause .05
+    "prefeito thinking"
+    pause 3
+    repeat
+
+image prefeitoo default:
+    "prefeito default"
+    pause 3
+    "prefeito default1"
+    pause .05
+    "prefeito default2"
+    pause .07
+    "prefeito default1"
+    pause .05
+    "prefeito default"
+    pause 3
+    repeat
+
+image prefeitoo surprised:
+    "prefeito surprise"
+    pause 2
+    "prefeito surprise1"
+    pause .05
+    "prefeito surprise2"
+    pause .07
+    "prefeito surprise1"
+    pause .05
+    "prefeito surprise"
+    pause 3
+    repeat
+
+
 image white = "#ffffff"
 image red = "#FF0000"
+
 
 
 
@@ -158,9 +261,9 @@ label start:
     "Você escolhe..."
     
     menu:
-        "Ir à direita":
+        "Ir à direita.":
             jump right
-        "Ir à esquerda":
+        "Ir à esquerda.":
             jump left
 
 
@@ -174,9 +277,9 @@ label right:
     "A tentação de passar a noite lá surge: seria um abrigo seguro dos animais selvagens e te daria mais tempo para encontrar o caminho de volta ao amanhecer."
     
     menu:
-        "Abrir a porta":
+        "Abrir a porta.":
             jump open
-        "Bater na porta":
+        "Bater na porta.":
             jump knock
         
 label open:
@@ -432,7 +535,9 @@ label assistant:
 
     scene bg house with fade
 
-    show witch happy with dissolve
+    show witch happy at center
+    show expression AlphaMask("foliage", At("witch happy", center)) as mask
+    with dissolve
 
     s "Vejo que você se perdeu novamente, Aprendiz!"
 
@@ -538,7 +643,7 @@ label left:
     menu:
         "Encarar a criatura.":
             jump stay
-        "Escalar a árvore.":
+        "Tentar escalar a árvore.":
             jump run
 
 label stay:
@@ -574,9 +679,6 @@ label stay:
     pause 3.0
 
     scene black with fade 
-
-   
-    
     pause 1.0
 
     scene bg end4 with dissolve
@@ -586,6 +688,405 @@ label stay:
     n "Final 4: Banquete de Sapo"
 
     return
+
+label run:
+    "Você encara o sapo por alguns segundos esperando pelo momento certo. No instante em que ele abaixa a guarda, você agarra os cipós às suas costas e escala a árvore apressadamente."
+
+
+    hide sapo with dissolve
+    play audio "sfx-monster2.ogg"
+
+    "O monstro ruge e tenta te agarrar, mas você é veloz o suficiente. Rapidamente, você se encontra a metros de distância do chão enquanto o sapo te encara lá de baixo."
+
+    "Normalmente, sapos deveriam saber como subir em árvores, mas você deduz que esse aí é gordo demais para isso."
+
+    play audio "sfx-monster2.ogg"
+    with hpunch
+
+    "Ele investe seu corpo contra a árvore, mas seus esforços são em vão. Depois de longos minutos tentando, ele desiste e segue no seu caminho de volta."
+    play audio "sfx-monstersteps.ogg"
+
+    "..."
+
+    stop music fadeout 1.0
+    play music ost1 fadein 1.0
+
+    "Quando o som de suas pegadas se torna inaudível e sua figura desaparece no horizonte entre os troncos recurvos da floresta, você solta um suspiro de alívio."
+
+    "E enquanto você aproveita a visão superior de sua posição, você nota na distância o que parece ser destroços de carruagem."
+
+    "Você rapidamente desce e começa a ir em direção a sua descoberta. Claro, sair da floresta era sua prioridade, mas você não ia perder a oportunidade de lucrar algumas moedas."
+
+    stop music fadeout 1.0
+    play music ost4 fadein 1.0
+
+    play audio "sfx-steps.ogg"
+    scene bg carriage with fade
+
+    "Após uma caminhada, a visão de uma carruagem se mostra diante de você, suas rodas quebradas e seus pedaços espalhados pela estrada improvisada."
+
+    "Não vendo ninguém nas redondezas, você começa a “guardar” os mantimentos ainda existentes ao redor da carruagem."
+
+    y "Seda... Até mesmo algumas moedas de bronze. Meu dia de sorte!"
+
+    "Mas é claro, não seria recomendável vender esses itens na sua própria Aldeia... Você pensa profundamente em como fazer o maior lucro possível com o que encontrou."
+
+    "Seus pensamentos, porém, são interrompidos por uma súbita voz, que parece irritada."
+
+    who "Ei!"
+
+    "Se preparando pra sair correndo, você se vira em direção à voz, o medo embrulhando seu estômago. Quem poderia ser o idiota presente na Floresta Negra a essa hora da noite?!"
+
+    show cedricc default at center
+    show expression AlphaMask("foliage", At("cedricc default", center)) as mask
+    with dissolve
+
+    "O jovem repousa à sombra de uma árvore majestosa, cujos galhos se estendem graciosamente sobre ele."
+
+    "Você instantaneamente o reconhece como Cedric, o filho mais novo da poderosa casa Magnus."
+
+    "Uma expressão de desdém adorna seu rosto, a marca da aristocracia, isto é, se suas roupas já não fossem espalhafatosas o suficiente."
+
+    "Você quase entra em pânico, e está prestes a balbuciar uma desculpa, quando seu olhar abaixa e pousa no tornozelo claramente inchado do aristocrata."
+
+    "Sua hesitação se dissipa instantaneamente."
+
+    c "Achei que tinha sido abandonado aqui por completo... Meus servos idiotas, quando perceberam que eu não conseguia andar, saíram correndo com medo da {i}“Floresta Amaldiçoada”{/i}..."
+
+    c "Te mandaram aqui para procurar por mim, não é? Por que estava guardando meus pertences ao invés de procurar por mim primeiro?" 
+
+    menu:
+        "“Sim, você está certo, era totalmente isso que eu estava fazendo.”":
+            jump noble1
+        "“De verdade... Eu estou perdido também...”":
+            jump noble2
+
+label noble1:
+    y "Senhor, eu estava apenas procurando pistas a fim de localizar a sua presença. Não esperava que estivesse tão perto do lugar do acidente."
+
+    "Cedric te olha um pouco desconfiado, mas parece não acreditar que um simples aldeão teria a coragem de roubar a aristocracia."
+
+    "Ao obter sua confirmação, seu nariz se empina ainda mais pro alto."
+
+    show cedricc angry at shake 
+
+    c "O que está fazendo parado então? Logo a noite cairá! Me carregue logo para o fim dessa maldita floresta!"
+
+    "Grandes palavras pra quem não acredita que a floresta é amaldiçoada..."
+
+    show cedricc default at center
+    with dissolve
+
+    "Você oferece seu ombro para Cedric, mas ele continua parado te observando."
+
+    c "O que você está esperando? Abaixe-se de uma vez logo, plebeu."
+
+    "Um pingo de irritação começa a se formar dentro de você, mas tentando manter a calma, você se ajoelha e Cedric, sem perder tempo, sobe nas suas costas."
+
+
+    show cedricc thinking at easeinzoom
+    show expression AlphaMask("foliage", At("cedricc default", easeinzoom)) as mask
+    with dissolve
+
+    "Passando tantas horas dando voltas naquele lugar, seu senso de direção parece ter melhorado. Você procura a saída, enquanto o nobre nas suas costas não para de reclamar."
+
+    show cedricc complain
+    with dissolve
+    c "Se aqueles servos inúteis não fossem o suficiente, até meu irmão idiota correu com o rabo no meio das pernas. E ainda levou toda a comida."
+
+    show cedricc angry
+    with dissolve
+    c "Do que que esses franguinhos tem tanto medo, pra começar? Da grama?"
+
+    show cedricc thinking
+    with dissolve
+
+    c "Se bem que eu também teria medo se fosse eles. Eles desperdiçam tanto oxigênio que até as árvores ficariam com raiva."
+    
+    show cedricc default
+    with dissolve
+
+    c "E talvez seja bom que meu irmão não esteja aqui. Nem a arca de Noé consegue carregar aquele animal. Certeza que foi por causa dele que a carruagem não aguentou e quebrou."
+
+    "Cedric continua tagarelando por o que parece horas. Ele reclama dos insetos, do seu cheiro, do comerciante que vendeu a carruagem e até mesmo do pai dele que o mandara administrar um lugar tão remoto."
+
+    "Você quase o deixa cair “sem querer” pra calar a boca dele."
+
+    show cedricc angry
+    with vpunch
+    c "Ou!!"
+
+    c "Toma cuidado aí, seu inútil! Você tá carregando um bem precioso!"
+
+    
+
+    scene bg forestexit
+    with fade
+
+    show cedricc default:
+        zoom 1.5
+        center
+        yoffset 300
+    with dissolve
+
+    "Chegando finalmente à saída da Floresta Negra, a visão do céu aberto é um alívio para ambos."
+
+    "Com a missão cumprida, você pensa em se livrar desse fardo aristocrático o mais rápido possível."
+
+    stop music fadeout 1.0
+    stop nature fadeout 1.0
+
+    scene bg shop
+    with fade
+
+    play nature village fadein 1.0
+    play music ost3 fadein 1.0
+
+    show cedricc thinking with dissolve
+
+    "Ao chegar à Aldeia, vocês dois são rapidamente cercados por uma multidão."
+
+    show cedricc thinking at easein_right
+    play audio "sfx-running.ogg"
+    show prefeitoo default at easein_transform
+
+    "O prefeito aparece correndo poucos minutos depois, pedindo profundas desculpas ao nobre."
+
+    p "Meu senhor! Como você está?!"
+
+    show cedricc angry with dissolve
+    c "Cale a boca e me leve em algum lugar para descansar!"
+
+
+    stop nature fadeout 1.0
+    scene bg mayor
+    with fade
+
+    show cedricc thinking at easein_transform2
+    pause 0.5
+    show prefeitoo default at easein_transform
+    
+    "Você o leva até os aposentos do prefeito, deixando em uma cadeira com almofadas acolchoadas. Com um pouco de surpresa, você olha ao redor e percebe o quanto o lugar é luxuoso"
+
+    p "Me desculpe, meu Lorde! Alguns de seus servos voltaram, mas eles chegaram exaustos da viagem e colapsaram assim que chegaram na Aldeia. Não fomos informados de que o senhor estava preso na floresta."
+
+    show cedricc angry with dissolve
+    c "E? Se não fosse o trabalho desse aldeão aqui que me resgatou por puro dever, eu ainda estaria preso naquela floresta!"
+
+    y "Só fiz o que devia fazer, meu senhor."
+
+    "“Agora me dê minhas moedas de ouro!” Era o que você queria dizer. Suas costas doíam e você tinha que voltar pra casa pra alimentar suas galinhas."
+
+    c "Não acredito na sua incompetência! Até um aldeão serviu a nobreza melhor do que você."
+
+    show prefeitoo thinking with dissolve
+
+    "O prefeito te olha, como se estivesse te avaliando."
+
+    show cedricc thinking with dissolve
+
+    "Cedric também para por um tempo, em meio a seus pensamentos.."
+
+    show cedricc default with dissolve
+
+    "Finalmente, ele te olha, parecendo ter a confirmação que precisa."
+
+    show cedricc angry with dissolve
+
+    c "Você está resignado das suas funções! Além disso, estarei promovendo esse aldeão a prefeito."
+
+    show prefeitoo surprised with dissolve
+
+    y "Prefeito, eu?"
+
+    p "Prefeito, ele?"
+
+    stop music fadeout 1.0
+
+    scene bg mayor with fade
+    play music ost6 fadein 1.0
+
+    "Após isso, as coisas se desenrolaram rapidamente."
+
+    "Seu novo cargo trouxe consigo uma série de responsabilidades, sendo a mais desafiadora delas a necessidade de ter uma {i}conversa{/i} com Cedric…"
+
+    "Você o convence que ele realmente estava em uma posição precária, mesmo que comendo as melhores carnes disponíveis e tendo todos seus pertences transportados da Capital, como cobertores de seda, cavalos de raça, e servos novos."
+
+    "Com os novos recursos, você não resiste a tentação e decide desviar um pouco para seu próprio bolso..."
+
+    "Afinal, seu “chefe” sequer aparecia ao escritório, culpando o tornozelo inchado mesmo que você tivesse certeza de tê-lo visto sendo transportado por dois servos em uma cadeira, em direção a um dos restaurantes mais refinados da Aldeia."
+
+    "Logo, você considerou essa ação como uma espécie de “taxa administrativa”."
+
+    "O ano rapidamente se passa, e chega a hora da avaliação dos seus relatórios sobre os gastos e sobre a colheita e economia na Aldeia."
+
+    show cedricc default with dissolve
+
+    c "..."
+
+    show cedricc happy with dissolve
+
+    c "Bom trabalho! Esse foi o ano mais produtivo que tivemos desde a década passada!"
+
+    y "..."
+
+    "Enquanto Cedric te elogiava, uma inquietação persistia em sua mente: até que ponto o prefeito anterior desviava recursos financeiros da Aldeia?"
+
+    scene black with fade 
+    pause 1.0
+
+    scene bg end5 with dissolve
+
+    $ cinematic = True
+    
+    n "Final 5: “Indicação”"
+
+    return
+
+label noble2:
+
+    "Na verdade, eu estou perdido também..."
+
+    show cedricc closedeyes with dissolve
+    
+    c "..."
+
+    show cedricc default with dissolve
+    c "Então, você estava... Roubando minha carruagem?"
+
+    "Você permanece em silêncio. A falta de resposta aumenta a indignação do aristocrata."
+
+    show cedricc angry at shake 
+    c "Responda imediatamente, plebeu insolente! Como se atreve a roubar da nobreza?"
+
+    "Você, consciente da inutilidade de uma explicação, decide continuar sem responder os questionamentos."
+
+    "Lentamente, você começa a dar alguns passos para se afastar da situação."
+
+    "Percebendo seus movimentos, o nobre, em um ato impulsivo, deixa escapar um grito."
+
+    show cedricc angry at shake 
+    c "Espere! Volte aqui imediatamente! Se for capaz de me tirar desta maldita floresta, vou recompensá-lo. Cinco moedas de ouro pelo seu serviço!"
+
+    "Sem pensar duas vezes, você aceita. 5 moedas de ouro são suficientes para você viver o resto da vida em fartura."
+
+    y "Claro meu senhor! Por favor, suba nas minhas costas."
+
+    show cedricc default at easeinzoom
+    show expression AlphaMask("foliage", At("cedricc default", easeinzoom)) as mask
+    with dissolve
+
+    "Ele não perde tempo. Seu corpo reclama, mas não dá para parar pra descansar agora."
+
+    "Passando tantas horas dando voltas naquele lugar, seu senso de direção parece ter melhorado."
+
+    "Você procura a saída, enquanto o nobre nas suas costas permanece em silêncio."
+
+
+    scene bg forestexit
+    with fade
+
+    show cedricc default:
+        zoom 1.5
+        center
+        yoffset 300
+    with dissolve
+
+    "Chegando finalmente à saída da Floresta Negra, a visão do céu aberto é um alívio para ambos."
+
+    stop music fadeout 1.0
+    stop nature fadeout 1.0
+
+    scene bg shop
+    with fade
+
+    play nature village fadein 1.0
+    play music ost3 fadein 1.0
+
+    show cedricc thinking with dissolve
+
+    "Ao chegar à Aldeia, vocês dois são rapidamente cercados por uma multidão."
+
+    show cedricc thinking at easein_right
+    play audio "sfx-running.ogg"
+    show prefeitoo default at easein_transform
+
+    "O prefeito aparece correndo poucos minutos depois, pedindo profundas desculpas ao nobre."
+
+    "Você o deixa na casa do prefeito e é dispensado imediatamente."
+
+    stop nature fadeout 1.0
+    scene bg shop
+    with fade
+
+    play audio "sfx-knock.ogg"
+    "Quando os primeiros raios de sol iluminam a manhã seguinte, você é abruptamente despertado por batidas agressivas na sua porta."
+    
+
+    show knight with dissolve
+
+    k "Você está preso por furto à nobreza!"
+
+    "Internamente, você pragueja o nobre pela falta de gratidão."
+    
+    scene black with fade
+    stop music fadeout 1.0
+    pause 1.0
+    
+    play music ost7 fadein 1.0
+
+    "Você passa 5 anos em uma prisão na Capital."
+
+    "Ao ser liberado, um guarda o informa que foi deixada uma recompensa para você, constituindo de 5 moedas de bronze."
+
+    scene black with fade 
+    pause 1.0
+
+    scene bg end6 with dissolve
+
+    $ cinematic = True
+    
+    n "Final 6: “O Orgulho da Nobreza”"
+
+    return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 

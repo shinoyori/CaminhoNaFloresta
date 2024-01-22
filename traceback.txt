@@ -1,27 +1,21 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 528, in script
-    
-OSError: Couldn't find file 'sfx-monster1.ogg'.
+  File "game/script.rpy", line 1026, in script
+    show knight with dissolve
+OSError: Couldn't find file 'sfx-knock'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 528, in script
-    
-  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\ast.py", line 930, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\exports.py", line 1474, in say
-    who(what, *args, **kwargs)
-  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\character.py", line 1352, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\character.py", line 1003, in do_display
-    display_say(who,
-  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\character.py", line 693, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\ui.py", line 299, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "game/script.rpy", line 1026, in script
+    show knight with dissolve
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\ast.py", line 1678, in execute
+    renpy.exports.with_statement(trans, paired=paired)
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\exports.py", line 1758, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\display\core.py", line 2978, in do_with
+    return self.interact(trans_pause=True,
   File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\display\core.py", line 3582, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
   File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\display\core.py", line 4379, in interact_core
@@ -39,9 +33,9 @@ Full traceback:
     rv = renpy.loader.load(fn, directory="audio")
   File "C:\Users\home\Desktop\Arquivos\Renpy\renpy\loader.py", line 833, in load
     raise IOError("Couldn't find file '%s'." % name)
-OSError: Couldn't find file 'sfx-monster1.ogg'.
+OSError: Couldn't find file 'sfx-knock'.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.1.3.23091805
 O Caminho na Floresta 1.0
-Fri Jan 19 23:27:36 2024
+Mon Jan 22 01:42:11 2024
