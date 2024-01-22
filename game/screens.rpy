@@ -413,17 +413,15 @@ screen navigation():
 
             if main_menu:
 
-                textbutton _("Start") action Start()
+                textbutton _("Jogar") action Start()
 
-            textbutton _("Load") action ShowMenu("load")
+            textbutton _("Carregar") action ShowMenu("load")
 
-            textbutton _("Settings") action ShowMenu("preferences")
+            textbutton _("Opções") action ShowMenu("preferences")
 
             if renpy.variant("pc"):
 
-                ## The quit button is banned on iOS and unnecessary on Android and
-                ## Web.
-                textbutton _("Quit") action Quit(confirm=not main_menu)
+                textbutton _("Sair") action Quit(confirm=not main_menu)
 
     else:
         hbox:
@@ -435,25 +433,25 @@ screen navigation():
 
             spacing gui.navigation_spacing
 
-            textbutton _("History") action ShowMenu("history")
+            textbutton _("Histórico") action ShowMenu("history")
 
             if not main_menu:
-                textbutton _("Save") action ShowMenu("save")
+                textbutton _("Salvar") action ShowMenu("save")
 
-            textbutton _("Load") action ShowMenu("load")
+            textbutton _("Carregar") action ShowMenu("load")
 
-            textbutton _("Settings") action ShowMenu("preferences")
+            textbutton _("Opções") action ShowMenu("preferences")
 
             # if _in_replay:
 
                 # textbutton _("End Replay") action EndReplay(confirm=True)
 
-            textbutton _("About") action ShowMenu("about")
+            textbutton _("Sobre") action ShowMenu("about")
 
             if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
                 ## Help isn't necessary or relevant to mobile devices.
-                textbutton _("Help") action ShowMenu("help")
+                textbutton _("Controles") action ShowMenu("help")
 
             if not main_menu:
                 textbutton _("Home") action MainMenu()
@@ -536,8 +534,6 @@ screen main_menu():
     add SnowBlossom("gui/particles/light4.png", 3, xspeed=(20, 50), yspeed=(100, 300), start=50)
 
     add "gui/border.png"
-    ## The use statement includes another screen inside this one. The actual
-    ## contents of the main menu are in the navigation screen.
     use navigation
 
     if gui.show_name:
@@ -773,11 +769,6 @@ style return_button:
 
 
 ## About screen ################################################################
-##
-## This screen gives credit and copyright information about the game and Ren'Py.
-##
-## There's nothing special about this screen, and hence it also serves as an
-## example of how to make a custom screen.
 
 screen about():
 
@@ -809,13 +800,6 @@ style about_label_text:
     size gui.label_text_size
 
 ## Load and Save screens #######################################################
-##
-## These screens are responsible for letting the player save the game and load
-## it again. Since they share nearly everything in common, both are implemented
-## in terms of a third screen, file_slots.
-##
-## https://www.renpy.org/doc/html/screen_special.html#save https://
-## www.renpy.org/doc/html/screen_special.html#load
 
 screen save():
 
@@ -833,7 +817,7 @@ screen load():
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
+    default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Saves Automáticos"), quick=_("Quick saves"))
 
     use game_menu(title):
 
@@ -967,7 +951,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Settings"), scroll="viewport"):
+    use game_menu(_("Configurações"), scroll="viewport"):
 
         vbox:
 
@@ -979,15 +963,15 @@ screen preferences():
                     vbox:
                         style_prefix "radio"
                         label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                        textbutton _("Janela") action Preference("display", "window")
+                        textbutton _("Tela Cheia") action Preference("display", "fullscreen")
 
                 vbox:
                     style_prefix "check"
                     label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    textbutton _("Texto não lido") action Preference("skip", "toggle")
+                    textbutton _("Após escolhas") action Preference("after choices", "toggle")
+                    textbutton _("Transições") action InvertSelected(Preference("transitions", "toggle"))
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -1000,25 +984,25 @@ screen preferences():
 
                 vbox:
 
-                    label _("Text Speed")
+                    label _("Velocidade do texto")
 
                     bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                    label _("Modo automático")
 
                     bar value Preference("auto-forward time")
 
                 vbox:
 
                     if config.has_music:
-                        label _("Music Volume")
+                        label _("Volume da Música")
 
                         hbox:
                             bar value Preference("music volume")
 
                     if config.has_sound:
 
-                        label _("Sound Volume")
+                        label _("Volume de Efeitos Sonoros")
 
                         hbox:
                             bar value Preference("sound volume")
@@ -1027,19 +1011,12 @@ screen preferences():
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                    
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
 
-                        textbutton _("Mute All"):
+                        textbutton _("Mutar tudo"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
 
@@ -1130,7 +1107,7 @@ screen history():
     ## Avoid predicting this screen, as it can be very large.
     predict False
 
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    use game_menu(_("Histórico"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
 
         style_prefix "history"
 
@@ -1158,7 +1135,7 @@ screen history():
                     substitute False
 
         if not _history_list:
-            label _("The dialogue history is empty.")
+            label _("O histórico de diálogo está vazio.")
 
 
 ## This determines what tags are allowed to be displayed on the history screen.
@@ -1217,7 +1194,7 @@ screen help():
 
     default device = "keyboard"
 
-    use game_menu(_("Help"), scroll="viewport"):
+    use game_menu(_("Ajuda"), scroll="viewport"):
 
         style_prefix "help"
 
@@ -1226,122 +1203,80 @@ screen help():
 
             hbox:
 
-                textbutton _("Keyboard") action SetScreenVariable("device", "keyboard")
+                textbutton _("Teclado") action SetScreenVariable("device", "keyboard")
                 textbutton _("Mouse") action SetScreenVariable("device", "mouse")
-
-                if GamepadExists():
-                    textbutton _("Gamepad") action SetScreenVariable("device", "gamepad")
 
             if device == "keyboard":
                 use keyboard_help
             elif device == "mouse":
                 use mouse_help
-            elif device == "gamepad":
-                use gamepad_help
 
 
 screen keyboard_help():
 
     hbox:
         label _("Enter")
-        text _("Advances dialogue and activates the interface.")
+        text _("Avança o diálogo e ativa a interface.")
 
     hbox:
         label _("Space")
-        text _("Advances dialogue without selecting choices.")
+        text _("Avança o diálogo sem ativar escolhas.")
 
     hbox:
-        label _("Arrow Keys")
-        text _("Navigate the interface.")
+        label _("Setas")
+        text _("Navega a interface.")
 
     hbox:
         label _("Escape")
-        text _("Accesses the game menu.")
+        text _("Acessa o menu do jogo.")
 
     hbox:
         label _("Ctrl")
-        text _("Skips dialogue while held down.")
+        text _("Pula o diálogo enquanto estiver pressionado.")
 
     hbox:
         label _("Tab")
-        text _("Toggles dialogue skipping.")
+        text _("Ativa/desativa a função skip.")
 
     hbox:
         label _("Page Up")
-        text _("Rolls back to earlier dialogue.")
+        text _("Volta ao diálogo anterior.")
 
     hbox:
         label _("Page Down")
-        text _("Rolls forward to later dialogue.")
+        text _("Passa ao diálogo seguinte.")
 
     hbox:
         label "H"
-        text _("Hides the user interface.")
+        text _("Esconde a interface.")
 
     hbox:
         label "S"
-        text _("Takes a screenshot.")
-
-    hbox:
-        label "V"
-        text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
-
-    hbox:
-        label "Shift+A"
-        text _("Opens the accessibility menu.")
+        text _("Tira uma captura de tela.")
 
 
 screen mouse_help():
 
     hbox:
-        label _("Left Click")
-        text _("Advances dialogue and activates the interface.")
+        label _("Botão Esquerdo")
+        text _("Avança o diálogo e ativa a interface.")
 
     hbox:
-        label _("Middle Click")
-        text _("Hides the user interface.")
+        label _("Botão do Meio")
+        text _("Esconde a interface.")
 
     hbox:
-        label _("Right Click")
-        text _("Accesses the game menu.")
+        label _("Botão Direito")
+        text _("Accessa o menu do jogo.")
 
     hbox:
-        label _("Mouse Wheel Up\nClick Rollback Side")
-        text _("Rolls back to earlier dialogue.")
+        label _("Scroll para cima")
+        text _("Volta ao diálogo anterior.")
 
     hbox:
-        label _("Mouse Wheel Down")
-        text _("Rolls forward to later dialogue.")
+        label _("Scroll para baixo")
+        text _("Passa ao diálogo seguinte.")
 
-
-screen gamepad_help():
-
-    hbox:
-        label _("Right Trigger\nA/Bottom Button")
-        text _("Advances dialogue and activates the interface.")
-
-    hbox:
-        label _("Left Trigger\nLeft Shoulder")
-        text _("Rolls back to earlier dialogue.")
-
-    hbox:
-        label _("Right Shoulder")
-        text _("Rolls forward to later dialogue.")
-
-
-    hbox:
-        label _("D-Pad, Sticks")
-        text _("Navigate the interface.")
-
-    hbox:
-        label _("Start, Guide")
-        text _("Accesses the game menu.")
-
-    hbox:
-        label _("Y/Top Button")
-        text _("Hides the user interface.")
-
-    textbutton _("Calibrate") action GamepadCalibrate()
 
 
 style help_button is gui_button
@@ -1374,11 +1309,7 @@ style help_label_text:
 
 
 ## Confirm screen ##############################################################
-##
-## The confirm screen is called when Ren'Py wants to ask the player a yes or no
-## question.
-##
-## https://www.renpy.org/doc/html/screen_special.html#confirm
+
 
 screen confirm(message, yes_action, no_action):
 
@@ -1410,8 +1341,8 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 150
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                textbutton _("Sim") action yes_action
+                textbutton _("Não") action no_action
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
@@ -1457,7 +1388,7 @@ screen skip_indicator():
         hbox:
             spacing 9
 
-            text _("Skipping")
+            text _("Pulando...")
 
             text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
             text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
