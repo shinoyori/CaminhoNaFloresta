@@ -1,7 +1,38 @@
-﻿# The script of the game goes in this file.
+﻿ 
+init python:    
+    class Tree:
+        def __init__(self, label):
+            self.left = None
+            self.right = None
+            self.label = label
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+    node1 = Tree("start")
+    node2 = Tree("right")
+    node3 = Tree("left")
+    node4 = Tree("open")
+    node5 = Tree("knock")
+    node6 = Tree("lost")
+    node7 = Tree("assistant")
+    node8 = Tree("stay")
+    node9 = Tree("run")
+    node10 = Tree("noble1")
+    node11 = Tree("noble2")
+
+    node1.left = node3
+    node1.right = node2
+
+    node2.left = node4
+    node2.right = node5
+
+    node3.left = node8
+    node3.right = node9
+
+    node5.left = node6
+    node5.right = node7
+
+    node9.left = node10
+    node9.right = node11
+
 
 define s = Character("Bruxa", what_prefix='"', what_suffix='"')
 define n = Character("")
@@ -262,9 +293,9 @@ label start:
     
     menu:
         "Ir à direita.":
-            jump right
+            $renpy.jump(node1.right.label)
         "Ir à esquerda.":
-            jump left
+            $renpy.jump(node1.left.label)
 
 
     
@@ -278,9 +309,9 @@ label right:
     
     menu:
         "Abrir a porta.":
-            jump open
+            $renpy.jump(node2.left.label)
         "Bater na porta.":
-            jump knock
+            $renpy.jump(node2.right.label)
         
 label open:
     "Sem hesitar, você empurra a porta lentamente."
@@ -376,9 +407,9 @@ label knock:
 
     menu:
         "Esclarecer que na verdade está perdido, e pedir ajuda para voltar pra casa.":
-            jump lost
+            $renpy.jump(node5.left.label)
         "Aceitar ser um assistente para uma bruxa desconhecida e deixar sua vida na Aldeia para trás.":
-            jump assistant
+            $renpy.jump(node5.right.label)
         
 
 
@@ -642,9 +673,9 @@ label left:
 
     menu:
         "Encarar a criatura.":
-            jump stay
+            $renpy.jump(node3.left.label)
         "Tentar escalar a árvore.":
-            jump run
+            $renpy.jump(node3.right.label)
 
 label stay:
     stop music fadeout 1.0
@@ -757,9 +788,9 @@ label run:
 
     menu:
         "“Sim, você está certo, era totalmente isso que eu estava fazendo.”":
-            jump noble1
+            $renpy.jump(node9.left.label)
         "“De verdade... Eu estou perdido também...”":
-            jump noble2
+            $renpy.jump(node9.right.label)
 
 label noble1:
     y "Senhor, eu estava apenas procurando pistas a fim de localizar a sua presença. Não esperava que estivesse tão perto do lugar do acidente."
