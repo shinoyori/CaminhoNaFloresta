@@ -446,7 +446,7 @@ screen navigation():
 
                 # textbutton _("End Replay") action EndReplay(confirm=True)
 
-            textbutton _("Sobre") action ShowMenu("about")
+            textbutton _("Galeria") action ShowMenu("about")
 
             if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -773,23 +773,7 @@ style return_button:
 screen about():
 
     tag menu
-
-    ## This use statement includes the game_menu screen inside this one. The
-    ## vbox child is then included inside the viewport inside the game_menu
-    ## screen.
-    use game_menu(_("About"), scroll="viewport"):
-
-        style_prefix "about"
-
-        vbox:
-            label "[config.name!t]"
-            text _("Version [config.version!t]\n")
-
-            ## gui.about is usually set in options.rpy.
-            if gui.about:
-                text "[gui.about!t]\n"
-
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+    use gal(_("Galeria"))
 
 
 style about_label is gui_label
@@ -813,6 +797,123 @@ screen load():
     tag menu
 
     use file_slots(_("Load"))
+
+
+screen gal(title):
+    default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Saves Automáticos"), quick=_("Quick saves"))
+
+    use game_menu(title):
+
+        grid 3 2:
+            style_prefix "slot"
+
+            xalign 0.5
+            yalign 0.5
+
+            spacing gui.slot_spacing
+
+            button:
+                has vbox
+                add gallery.make_button(name="endone",unlocked="CGs/small/1_small.png",locked="CGs/small/locked.jpg") 
+
+                text "Final 1":
+                            style "slot_time_text"
+
+                if persistent.one_unlocked:
+                    text "Visita Folgada":
+                        style "slot_time_text"
+                else:
+                    text "???":
+                        style "slot_time_text"
+
+            button:
+                has vbox
+                add gallery.make_button(name="endtwo",unlocked="CGs/small/2_small.png",locked="CGs/small/locked.jpg") 
+
+                text "Final 2":
+                            style "slot_time_text"
+
+                if persistent.two_unlocked:
+                    text "Ovelha Negra":
+                        style "slot_time_text"
+                else:
+                    text "???":
+                        style "slot_time_text"
+
+
+            button:
+                has vbox
+                add gallery.make_button(name="endthree",unlocked="CGs/small/3_small.png",locked="CGs/small/locked.jpg") 
+
+                text "Final 3":
+                            style "slot_time_text"
+
+                if persistent.three_unlocked:
+                    text "Assistente da Bruxa":
+                        style "slot_time_text"
+                else:
+                    text "???":
+                        style "slot_time_text"
+
+
+            button:
+                has vbox
+                add gallery.make_button(name="endfour",unlocked="CGs/small/4_small.png",locked="CGs/small/locked.jpg") 
+
+                text "Final 4":
+                            style "slot_time_text"
+
+                if persistent.four_unlocked:
+                    text "Banquete de Sapo":
+                        style "slot_time_text"
+                else:
+                    text "???":
+                        style "slot_time_text"
+
+
+            button:
+                has vbox
+                add gallery.make_button(name="endfive",unlocked="CGs/small/5_small.png",locked="CGs/small/locked.jpg") 
+
+                text "Final 5":
+                            style "slot_time_text"
+
+                if persistent.five_unlocked:
+                    text "Indicação":
+                        style "slot_time_text"
+                else:
+                    text "???":
+                        style "slot_time_text"
+
+
+            button:
+                has vbox
+                add gallery.make_button(name="endsix",unlocked="CGs/small/6_small.png",locked="CGs/small/locked.jpg") 
+
+                text "Final 6":
+                            style "slot_time_text"
+
+                if persistent.six_unlocked:
+                    text "O Orgulho da Nobreza":
+                        style "slot_time_text"
+                else:
+                    text "???":
+                        style "slot_time_text"
+
+            
+            
+
+
+
+                #add gallery.make_button(name="red",unlocked="CGs/small/red_small.jpg",locked="CGs/small/locked.jpg") 
+                #add gallery.make_button(name="blue",unlocked="CGs/small/blue_small.jpg",locked="CGs/small/locked.jpg") 
+                #add gallery.make_button(name="green_and_orange",unlocked="CGs/small/green_small.jpg",locked="CGs/small/locked.jpg") 
+                #add gallery.make_button(name="green_and_orange2",unlocked="CGs/small/red_small.jpg",locked="CGs/small/locked.jpg") 
+                #add gallery.make_button(name="green_and_orange2",unlocked="CGs/small/red_small.jpg",locked="CGs/small/locked.jpg") 
+                #add gallery.make_button(name="green_and_orange2",unlocked="CGs/small/red_small.jpg",locked="CGs/small/locked.jpg") 
+
+                
+            
 
 
 screen file_slots(title):

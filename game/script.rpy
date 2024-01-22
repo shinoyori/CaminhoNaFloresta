@@ -1,5 +1,4 @@
-﻿ 
-init python:    
+﻿init python:    
     class Tree:
         def __init__(self, label):
             self.left = None
@@ -33,6 +32,11 @@ init python:
     node9.left = node10
     node9.right = node11
 
+image CG_red = "CGs/red.jpg"
+image CG_blue = "CGs/1.png"
+image CG_green = "CGs/green.jpg"
+image CG_orange = "CGs/orange.jpg"
+image CG_pink = "CGs/pink.jpg"
 
 define s = Character("Bruxa", what_prefix='"', what_suffix='"')
 define n = Character("")
@@ -359,6 +363,8 @@ label open:
     
     n "Final 1: Visita folgada"
 
+    $ persistent.one_unlocked = True
+
     return
 
 
@@ -481,6 +487,8 @@ label lost:
     
     n "Final 2: Ovelha Negra"
 
+    $ persistent.two_unlocked = True
+
     return
 
 
@@ -595,6 +603,8 @@ label assistant:
     $ cinematic = True
     
     n "Final 3: Assistente da Bruxa"
+
+    $ persistent.three_unlocked = True
 
     return
 
@@ -717,6 +727,8 @@ label stay:
     $ cinematic = True
     
     n "Final 4: Banquete de Sapo"
+
+    $ persistent.four_unlocked = True
 
     return
 
@@ -972,6 +984,8 @@ label noble1:
     
     n "Final 5: “Indicação”"
 
+    $ persistent.five_unlocked = True
+
     return
 
 label noble2:
@@ -1078,6 +1092,8 @@ label noble2:
     $ cinematic = True
     
     n "Final 6: “O Orgulho da Nobreza”"
+
+    $ persistent.six_unlocked = True
 
     return
 
