@@ -1,13 +1,13 @@
 # CaminhoNaFloresta
-Visual Novel para trabalho de EAD.
+Visual Novel para trabalho de EAD.<br><br>
 
-Desenvolvedores:
-  Ayla Yorinori Nishino
-  Julia Pedro Silva
-  João Manoel Ribeiro Machado
+Desenvolvedores:<br>
+  Ayla Yorinori Nishino<br>
+  Julia Pedro Silva<br>
+  João Manoel Ribeiro Machado<br><br>
 
-Criado na engine Ren'py.
-Template para UI originalmente utilizado: Astrology GUI Kit by Siyokoy
-Ilustrações geradas por inteligência artificial e editadas.
+Criado na engine Ren'py.<br>
+Template para UI originalmente utilizado: Astrology GUI Kit by Siyokoy<br>
+Ilustrações geradas por inteligência artificial e editadas.<br>
 
 
